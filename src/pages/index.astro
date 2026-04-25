@@ -1,0 +1,50 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import yaml from 'js-yaml';
+import type { Product } from '../types';
+import DealCard from '../components/DealCard.astro';
+import '../styles/global.css';
+
+const products = (yaml.load(
+  readFileSync(resolve(process.cwd(), 'products.yaml'), 'utf8')
+) as Product[]) ?? [];
+
+const associatesTag = import.meta.env.AMAZON_ASSOCIATES_TAG ?? 'placeholder-20';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coffee Deals</title>
+    <meta name="description" content="Best bulk coffee deals on Amazon. Unit price math already done." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <h1>Coffee Deals</h1>
+        <p class="tagline">Best bulk buys on Amazon. Unit price math already done.</p>
+      </div>
+    </header>
+
+    <main>
+      {products.length === 0 ? (
+        <p class="empty">No deals yet — add products to products.yaml.</p>
+      ) : (
+        products.map(product => (
+          <DealCard product={product} associatesTag={associatesTag} />
+        ))
+      )}
+    </main>
+
+    <footer>
+      <p>
+        As an Amazon Associate, I earn from qualifying purchases.
+        Prices are verified regularly — see the freshness label on each listing.
+      </p>
+    </footer>
+  </body>
+</html>

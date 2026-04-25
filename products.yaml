@@ -1,0 +1,26 @@
+# Coffee Deals — Product List
+#
+# This is the file you edit to manage deals. No code required.
+#
+# How to add a product:
+#   1. Find the ASIN: it's in the Amazon URL after /dp/ (e.g. amazon.com/dp/B07NQKX67P)
+#   2. Compute unit_price = deal_price / unit_count (use a calculator)
+#   3. Copy one of the entries below and fill in the fields
+#   4. Save the file and push to git — the site rebuilds automatically
+#
+# Fields managed automatically by the price-check script (don't edit by hand):
+#   last_checked, stale, current_price
+
+- id: nespresso-vertuo-colombia
+  name: "Nespresso Vertuo Colombia Pods"
+  asin: "B07NQKX67P"
+  deal_price: 89.99
+  unit_price: 0.43          # deal_price / unit_count = 89.99 / 210
+  unit_count: 210
+  unit_label: "pod"
+  typical_unit_price: 0.68  # what a single box costs per pod
+  bulk_note: "210-count bundle (3 boxes of 70)"
+  why_good: "Best per-pod price on Vertuo format. Single box runs $0.68/pod — this bundle cuts it by 37%. Worth stocking up."
+  last_checked: "2026-04-25T00:00:00Z"
+  stale: false
+  current_price: null

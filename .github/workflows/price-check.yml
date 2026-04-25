@@ -1,0 +1,42 @@
+name: Price Check
+
+on:
+  schedule:
+    - cron: "0 9 * * *"   # 9 AM UTC daily
+  workflow_dispatch:        # manual trigger from GitHub Actions tab
+
+jobs:
+  check-prices:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests pyyaml
+
+      - name: Run price check
+        env:
+          AMAZON_ACCESS_KEY: ${{ secrets.AMAZON_ACCESS_KEY }}
+          AMAZON_SECRET_KEY: ${{ secrets.AMAZON_SECRET_KEY }}
+          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
+          STALE_THRESHOLD: "0.10"
+        run: python scripts/check_prices.py
+
+      - name: Commit updated freshness data
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          if ! git diff --quiet products.yaml; then
+            git add products.yaml
+            git commit -m "chore: update price freshness data"
+            git push
+          else
+            echo "No changes to commit."
+          fi

@@ -1,0 +1,69 @@
+---
+import type { Product } from '../types';
+
+interface Props {
+  product: Product;
+  associatesTag: string;
+}
+
+const { product, associatesTag } = Astro.props;
+const {
+  name, asin, deal_price, unit_price, unit_count, unit_label,
+  typical_unit_price, bulk_note, why_good, last_checked, stale, current_price,
+} = product;
+
+const buyUrl = `https://www.amazon.com/dp/${asin}?tag=${associatesTag}`;
+const activePrice = current_price ?? deal_price;
+
+const checkedDate = new Date(last_checked);
+const daysAgo = Math.floor((Date.now() - checkedDate.getTime()) / (1000 * 60 * 60 * 24));
+const freshLabel = daysAgo === 0
+  ? 'Checked today'
+  : daysAgo === 1
+  ? 'Checked yesterday'
+  : `Checked ${daysAgo}d ago`;
+
+const savingsPct = typical_unit_price && typical_unit_price > unit_price
+  ? Math.round((1 - unit_price / typical_unit_price) * 100)
+  : null;
+---
+
+<article class="deal-card">
+  <div class="card-header">
+    <h2>{name}</h2>
+    <span class={`freshness ${stale ? 'stale' : 'fresh'}`}>
+      {stale ? 'Price may have changed' : freshLabel}
+    </span>
+  </div>
+
+  {stale && (
+    <p class="stale-warning">
+      This deal may have changed since it was last curated. Verify the price before buying.
+    </p>
+  )}
+
+  <p class="why-good">{why_good}</p>
+
+  <div class="price-box">
+    <div class="price-main">
+      <span class="unit-price">${unit_price.toFixed(2)}</span>
+      <span class="unit-label">per {unit_label}</span>
+      {savingsPct !== null && (
+        <span class="savings-badge">-{savingsPct}%</span>
+      )}
+    </div>
+    {typical_unit_price && (
+      <p class="price-compare">
+        vs <s>${typical_unit_price.toFixed(2)}</s> per {unit_label} single-box
+      </p>
+    )}
+    <p class="total-price">${activePrice.toFixed(2)} for {unit_count} {unit_label}s</p>
+    {bulk_note && <p class="bulk-note">{bulk_note}</p>}
+  </div>
+
+  <div class="card-footer">
+    <a href={buyUrl} target="_blank" rel="noopener noreferrer sponsored" class="buy-btn">
+      Buy on Amazon &rarr;
+    </a>
+  </div>
+</article>
