@@ -77,6 +77,21 @@ footer {
 
 /* Deal Card */
 
+.card-image {
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+}
+
 .deal-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -148,16 +163,11 @@ footer {
   flex-wrap: wrap;
 }
 
-.unit-price {
+.total-price-large {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent);
   letter-spacing: -0.02em;
-}
-
-.unit-label {
-  font-size: 0.88rem;
-  color: var(--text-muted);
 }
 
 .savings-badge {
@@ -169,27 +179,24 @@ footer {
   border-radius: 4px;
 }
 
-.price-compare {
+.bulk-note {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.unit-price-line {
   font-size: 0.84rem;
   color: var(--text-muted);
   margin-top: 0.35rem;
 }
 
+.price-compare {
+  color: var(--text-muted);
+}
+
 .price-compare s {
   color: #A8A29E;
-}
-
-.total-price {
-  font-size: 0.84rem;
-  color: var(--text);
-  font-weight: 500;
-  margin-top: 0.2rem;
-}
-
-.bulk-note {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-top: 0.2rem;
 }
 
 .card-footer {

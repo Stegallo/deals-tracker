@@ -11,16 +11,17 @@
 # Fields managed automatically by the price-check script (don't edit by hand):
 #   last_checked, stale, current_price
 
-- id: nespresso-vertuo-colombia
-  name: "Nespresso Vertuo Colombia Pods"
-  asin: "B07NQKX67P"
-  deal_price: 89.99
-  unit_price: 0.43          # deal_price / unit_count = 89.99 / 210
-  unit_count: 210
-  unit_label: "pod"
-  typical_unit_price: 0.68  # what a single box costs per pod
-  bulk_note: "210-count bundle (3 boxes of 70)"
-  why_good: "Best per-pod price on Vertuo format. Single box runs $0.68/pod — this bundle cuts it by 37%. Worth stocking up."
+- id: lavazza-crema-e-gusto-case-20
+  name: "Lavazza Crema e Gusto Ground Espresso"
+  asin: "B000C119O8"
+  deal_price: 72.95
+  unit_price: 0.41          # deal_price / unit_count = 72.95 / 176 oz
+  unit_count: 176
+  unit_label: "oz"
+  typical_unit_price: 0.68  # 4-brick pack ($23.79 / 35.2 oz)
+  bulk_note: "20-brick case (20 × 8.8 oz)"
+  image_url: "https://m.media-amazon.com/images/I/71DnnfhaRLL._SL1500_.jpg"                            # paste Amazon product image URL here
+  why_good: "Best per-oz price on Lavazza Crema e Gusto. The 4-brick pack runs $0.68/oz — this 20-brick case cuts it by 40%. Classic Italian espresso blend worth stocking up on."
   last_checked: "2026-04-25T00:00:00Z"
   stale: false
   current_price: null
