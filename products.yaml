@@ -1,27 +1,16 @@
-# Coffee Deals — Product List
-#
-# This is the file you edit to manage deals. No code required.
-#
-# How to add a product:
-#   1. Find the ASIN: it's in the Amazon URL after /dp/ (e.g. amazon.com/dp/B07NQKX67P)
-#   2. Compute unit_price = deal_price / unit_count (use a calculator)
-#   3. Copy one of the entries below and fill in the fields
-#   4. Save the file and push to git — the site rebuilds automatically
-#
-# Fields managed automatically by the price-check script (don't edit by hand):
-#   last_checked, stale, current_price
-
 - id: lavazza-crema-e-gusto-case-20
-  name: "Lavazza Crema e Gusto Ground Espresso"
-  asin: "B000C119O8"
+  name: Lavazza Crema e Gusto Ground Espresso
+  asin: B000C119O8
   deal_price: 72.95
-  unit_price: 0.41          # deal_price / unit_count = 72.95 / 176 oz
+  unit_price: 0.41
   unit_count: 176
-  unit_label: "oz"
-  typical_unit_price: 0.68  # 4-brick pack ($23.79 / 35.2 oz)
-  bulk_note: "20-brick case (20 × 8.8 oz)"
-  image_url: "https://m.media-amazon.com/images/I/71DnnfhaRLL._SL1500_.jpg"                            # paste Amazon product image URL here
-  why_good: "Best per-oz price on Lavazza Crema e Gusto. The 4-brick pack runs $0.68/oz — this 20-brick case cuts it by 40%. Classic Italian espresso blend worth stocking up on."
-  last_checked: "2026-04-25T00:00:00Z"
+  unit_label: oz
+  typical_unit_price: 0.68
+  bulk_note: 20-brick case (20 × 8.8 oz)
+  image_url: https://m.media-amazon.com/images/I/71DnnfhaRLL._SL1500_.jpg
+  why_good: Best per-oz price on Lavazza Crema e Gusto. The 4-brick pack runs $0.68/oz
+    — this 20-brick case cuts it by 40%. Classic Italian espresso blend worth stocking
+    up on.
+  last_checked: '2026-04-26T09:57:01Z'
   stale: false
   current_price: null
